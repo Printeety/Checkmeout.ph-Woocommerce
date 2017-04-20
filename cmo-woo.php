@@ -18,13 +18,11 @@ function cmo_woo_gateway() {
 	if ( ! isset( $plugin ) ) {
 		require_once( 'includes/class-wc-gateway-cmo-plugin.php' );
 
-		$plugin = new WC_Gateway_Cmo_Plugin( __FILE__, '1.2.0' );
+		$plugin = new WC_Gateway_CMO_Plugin( __FILE__, '1.2.0' );
 	}
 
 	return $plugin;
 }
 
 cmo_woo_gateway()->maybe_run();
-
-?>
 

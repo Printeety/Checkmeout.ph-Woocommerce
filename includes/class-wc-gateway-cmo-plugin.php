@@ -7,7 +7,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-class WC_Gateway_Cmo_Plugin {
+class WC_Gateway_CMO_Plugin {
+
+		/**
+	 * Filepath of main plugin file.
+	 *
+	 * @var string
+	 */
+	public $file;
+
+	/**
+	 * Plugin version.
+	 *
+	 * @var string
+	 */
+	public $version;
+
+	/**
+	 * Absolute plugin path.
+	 *
+	 * @var string
+	 */
+	public $plugin_path;
+
+	/**
+	 * Absolute plugin URL.
+	 *
+	 * @var string
+	 */
+	public $plugin_url;
+
+	/**
+	 * Absolute path to plugin includes dir.
+	 *
+	 * @var string
+	 */
+	public $includes_path;
 
 	/**
 	 * Flag to indicate the plugin has been boostrapped.
@@ -15,6 +50,21 @@ class WC_Gateway_Cmo_Plugin {
 	 * @var bool
 	 */
 	private $_bootstrapped = false;
+
+	public function __construct( $file, $version ) {
+		$this->file    = $file;
+		$this->version = $version;
+
+		// Path.
+		$this->plugin_path   = trailingslashit( plugin_dir_path( $this->file ) );
+		$this->plugin_url    = trailingslashit( plugin_dir_url( $this->file ) );
+		$this->includes_path = $this->plugin_path . trailingslashit( 'includes' );
+
+		// Updates
+		// if ( version_compare( $version, get_option( 'wc_ppec_version' ), '>' ) ) {
+		// 	$this->run_updater( $version );
+		// }
+	}
 
 	public function bootstrap() {
 		try {
@@ -37,7 +87,7 @@ class WC_Gateway_Cmo_Plugin {
 		public function maybe_run() {
 		// register_activation_hook( $this->file, array( $this, 'activate' ) );
 
-		// add_action( 'plugins_loaded', array( $this, 'bootstrap' ) );
+		 add_action( 'plugins_loaded', array( $this, 'bootstrap' ) );
 		// add_filter( 'allowed_redirect_hosts' , array( $this, 'whitelist_paypal_domains_for_redirect' ) );
 		// add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
@@ -60,11 +110,26 @@ class WC_Gateway_Cmo_Plugin {
 		//$this->_load_client();
 
 		// Load handlers.
-		require_once( $this->includes_path . 'class-wc-gateway-cmo-settings.php' );
+		//require_once( $this->includes_path . 'class-wc-gateway-cmo-settings.php' );
+		//require_once( $this->includes_path . 'class-wc-gateway-cmo-gateway-loader.php' );
 			
-		$this->settings       = new WC_Gateway_Cmo_Settings();
+		//$this->settings       = new WC_Gateway_Cmo_Settings();
+		//$this->gateway_loader = new WC_Gateway_Cmo_Gateway_Loader();
 	}
 
+	/**
+	 * Link to settings screen.
+	 */
+	public function get_admin_setting_link() {
+		if ( version_compare( WC()->version, '2.6', '>=' ) ) {
+			$section_slug = 'cmo_woo';
+		} else {
+			$section_slug = strtolower( 'WC_Gateway_CMO' );
+		}
+		return admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . $section_slug );
+	}
+
+	// Notes : Change this later to point to CMO checkout plugin doc
 	public function plugin_action_links( $links ) {
 		$setting_url = $this->get_admin_setting_link();
 

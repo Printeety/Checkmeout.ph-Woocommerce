@@ -12,7 +12,7 @@
 	exit; // Exit if accessed directly
 }
 
-function cmo_woo_gateway() {
+function wc_gateway_cmo() {
 	static $plugin;
 
 	if ( ! isset( $plugin ) ) {
@@ -24,5 +24,5 @@ function cmo_woo_gateway() {
 	return $plugin;
 }
 
-cmo_woo_gateway()->maybe_run();
+wc_gateway_cmo()->maybe_run();
 

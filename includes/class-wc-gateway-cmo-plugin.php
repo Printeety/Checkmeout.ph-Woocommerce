@@ -111,10 +111,10 @@ class WC_Gateway_CMO_Plugin {
 
 		// Load handlers.
 		//require_once( $this->includes_path . 'class-wc-gateway-cmo-settings.php' );
-		//require_once( $this->includes_path . 'class-wc-gateway-cmo-gateway-loader.php' );
+		require_once( $this->includes_path . 'class-wc-gateway-cmo-gateway-loader.php' );
 			
 		//$this->settings       = new WC_Gateway_Cmo_Settings();
-		//$this->gateway_loader = new WC_Gateway_Cmo_Gateway_Loader();
+		$this->gateway_loader = new WC_Gateway_CMO_Gateway_Loader();
 	}
 
 	/**
@@ -122,7 +122,7 @@ class WC_Gateway_CMO_Plugin {
 	 */
 	public function get_admin_setting_link() {
 		if ( version_compare( WC()->version, '2.6', '>=' ) ) {
-			$section_slug = 'cmo_woo';
+			$section_slug = 'checkmeout';
 		} else {
 			$section_slug = strtolower( 'WC_Gateway_CMO' );
 		}

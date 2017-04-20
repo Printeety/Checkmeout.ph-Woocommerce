@@ -112,9 +112,11 @@ class WC_Gateway_CMO_Plugin {
 		// Load handlers.
 		//require_once( $this->includes_path . 'class-wc-gateway-cmo-settings.php' );
 		require_once( $this->includes_path . 'class-wc-gateway-cmo-gateway-loader.php' );
+		require_once( $this->includes_path . 'class-wc-gateway-cmo-cart-handler.php' );
 			
 		//$this->settings       = new WC_Gateway_Cmo_Settings();
 		$this->gateway_loader = new WC_Gateway_CMO_Gateway_Loader();
+		$this->cart           = new WC_Gateway_CMO_Cart_Handler();
 	}
 
 	/**

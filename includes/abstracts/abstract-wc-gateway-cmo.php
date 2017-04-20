@@ -90,7 +90,7 @@ abstract class WC_Gateway_CMO extends WC_Payment_Gateway {
           'default' => __( 'API Key', 'woocommerce' )
           ),
      'secret_key' => array(
-          'title' => __( 'CheckMeOut API Key', 'woocommerce' ),
+          'title' => __( 'CheckMeOut Secret Key', 'woocommerce' ),
           'type' => 'text',
           'description' => __( 'This input matches the CheckMeOut merchant Secret Key', 'woocommerce' ),
           'default' => __( 'Secret Key', 'woocommerce' )

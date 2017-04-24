@@ -31,16 +31,16 @@ class WC_Gateway_CMO_Cart_Handler {
 	 */
 	public function display_cmo_button() {
 
-		$gateways = WC()->payment_gateways->get_available_payment_gateways();
-		$settings = wc_gateway_ppec()->settings;
+		// $gateways = WC()->payment_gateways->get_available_payment_gateways();
+		// $settings = wc_gateway_ppec()->settings;
 
 		$express_checkout_img_url = apply_filters( 'woocommerce_paypal_express_checkout_button_img_url', sprintf( 'https://www.checkmeout.ph/static/media/checkmeout_logo.be95fe71.png', $settings->button_size ) );
 		$paypal_credit_img_url    = apply_filters( 'woocommerce_paypal_express_checkout_credit_button_img_url', sprintf( 'https://www.checkmeout.ph/static/media/checkmeout_logo.be95fe71.png', $settings->button_size ) );
 
 		// billing details on checkout page to calculate shipping costs
-		if ( ! isset( $gateways['ppec_paypal'] ) ) {
-			return;
-		}
+		// if ( ! isset( $gateways['ppec_paypal'] ) ) {
+		// 	return;
+		// }
 		?>
 		<div class="wcppec-checkout-buttons woo_pp_cart_buttons_div">
 
@@ -50,15 +50,13 @@ class WC_Gateway_CMO_Cart_Handler {
 				</div>
 			<?php endif; ?>
 
-			<a href="<?php echo esc_url( add_query_arg( array( 'startcheckout' => 'true' ), wc_get_page_permalink( 'cart' ) ) ); ?>" id="woo_pp_ec_button" class="wcppec-checkout-buttons__button">
-				<img src="<?php echo esc_url( $express_checkout_img_url ); ?>" alt="<?php _e( 'Check out with PayPal', 'woocommerce-gateway-paypal-express-checkout' ); ?>" style="width: auto; height: auto;">
-			</a>
+			<form method="post" action="post">
+				
+			</form>	
 
-			<?php if ( $settings->is_credit_enabled() ) : ?>
-				<a href="<?php echo esc_url( add_query_arg( array( 'startcheckout' => 'true', 'use-ppc' => 'true' ), wc_get_page_permalink( 'cart' ) ) ); ?>" id="woo_pp_ppc_button" class="wcppec-checkout-buttons__button">
-				<img src="<?php echo esc_url( $paypal_credit_img_url ); ?>" alt="<?php _e( 'Pay with PayPal Credit', 'woocommerce-gateway-paypal-express-checkout' ); ?>" style="width: auto; height: auto;">
-				</a>
-			<?php endif; ?>
+			<a href="http://localhost:3000/I/my-product-13-123456789" id="" class="">
+				<img src="<?php echo esc_url( $express_checkout_img_url ); ?>" alt="<?php _e( 'Check out with PayPal', 'woocommerce-gateway-paypal-express-checkout' ); ?>" style="width: auto; height: auto;">
+			</a>	
 		</div>
 		<?php
 	}

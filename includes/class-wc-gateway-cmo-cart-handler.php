@@ -34,13 +34,19 @@ class WC_Gateway_CMO_Cart_Handler {
 		// $gateways = WC()->payment_gateways->get_available_payment_gateways();
 		// $settings = wc_gateway_ppec()->settings;
 
-		$express_checkout_img_url = apply_filters( 'woocommerce_paypal_express_checkout_button_img_url', sprintf( 'https://www.checkmeout.ph/static/media/checkmeout_logo.be95fe71.png', $settings->button_size ) );
+		$imgpath = $includes_path . '../assets/img/woocmo.png';
+
+		$express_checkout_img_url = apply_filters( 'woocommerce_paypal_express_checkout_button_img_url', sprintf( 'http://localhost:3000/cmo-checkout.png', $settings->button_size ) );
 		$paypal_credit_img_url    = apply_filters( 'woocommerce_paypal_express_checkout_credit_button_img_url', sprintf( 'https://www.checkmeout.ph/static/media/checkmeout_logo.be95fe71.png', $settings->button_size ) );
 
 		// billing details on checkout page to calculate shipping costs
 		// if ( ! isset( $gateways['ppec_paypal'] ) ) {
 		// 	return;
 		// }
+
+		$includes_path = wc_gateway_cmo()->includes_path;
+
+
 		?>
 		<div class="wcppec-checkout-buttons woo_pp_cart_buttons_div">
 
@@ -50,11 +56,9 @@ class WC_Gateway_CMO_Cart_Handler {
 				</div>
 			<?php endif; ?>
 
-			<form method="post" action="post">
-				
-			</form>	
 
-			<a href="http://localhost:3000/I/my-product-13-123456789" id="" class="">
+
+			<a href="<?php echo esc_url( add_query_arg( array( 'startcmocheckout' => 'true' ), wc_get_page_permalink( 'cart' ) ) ); ?>" id="" class="">
 				<img src="<?php echo esc_url( $express_checkout_img_url ); ?>" alt="<?php _e( 'Check out with PayPal', 'woocommerce-gateway-paypal-express-checkout' ); ?>" style="width: auto; height: auto;">
 			</a>	
 		</div>

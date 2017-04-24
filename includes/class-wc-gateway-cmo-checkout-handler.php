@@ -49,7 +49,7 @@ class WC_Gateway_CMO_Checkout_Handler {
 			//ob_start();
 			// TODO : trigger CMO redirect with automatic page creation
 
-			header("Location: http://localhost:3000/I/my-product-13-123456789");
+			header("Location: http://localhost:3000/dialog/checkout/cups-cb1f27116");
 			//header('Location: http://localhost:3000/I/my-product-13-123456789');
 			//_e( 'Billing details', 'woocommerce-gateway-paypal-express-checkout' );
 			exit;

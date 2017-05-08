@@ -26,7 +26,7 @@ class WC_Gateway_CMO_Client {
 			// First, add in the necessary credential parameters.
 			//$body = apply_filters( 'woocommerce_paypal_express_checkout_request_body', array_merge( $params, $this->_credential->get_request_params() ) );
 			$args = array(
-				'method'      => 'POST',
+				'method'      => 'GET',
 				'body'        => '',
 				'user-agent'  => __CLASS__,
 				'httpversion' => '1.1',
@@ -39,7 +39,7 @@ class WC_Gateway_CMO_Client {
 			//wc_gateway_ppec_log( sprintf( '%s: remote request to %s with params: %s', __METHOD__, $this->get_endpoint(), print_r( $body, true ) ) );
 			
 			//$resp = wp_safe_remote_post( 'http://api.staging.checkmeout.ph/v1/receptacles', $args );
-			$resp = wp_safe_remote_get( 'http://cmo-api.dev/v1/ecommerce-redirect', $args );
+			$resp = wp_remote_get( 'http://cmo-api.dev/v1/ecommerce-redirect', $args );
 			var_dump($resp);exit;
 			//return $this->_process_response( $resp );
 

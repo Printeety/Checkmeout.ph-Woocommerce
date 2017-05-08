@@ -98,7 +98,7 @@ class WC_Gateway_CMO_Plugin {
 	 * Run the plugin.
 	 */
 	protected function _run() {
-		//require_once( $this->includes_path . 'functions.php' );
+		require_once( $this->includes_path . 'functions.php' );
 		$this->_load_handlers();
 	}
 

@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WC_Gateway_PPEC_Cart_Handler handles button display in the cart.
+ * WC_Gateway_CMO_Cart_Handler handles button display in the cart.
  */
 class WC_Gateway_CMO_Cart_Handler {
 
@@ -19,10 +19,22 @@ class WC_Gateway_CMO_Cart_Handler {
 		// 	return;
 		// }
 
-		// add_action( 'woocommerce_before_cart_totals', array( $this, 'before_cart_totals' ) );
+		add_action( 'woocommerce_before_cart_totals', array( $this, 'before_cart_totals' ) );
 		// add_action( 'woocommerce_widget_shopping_cart_buttons', array( $this, 'display_mini_paypal_button' ), 20 );
 		add_action( 'woocommerce_proceed_to_checkout', array( $this, 'display_cmo_button' ), 20 );
 		//add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+	}
+
+	/**
+	 * Start checkout handler when cart is loaded.
+	 */
+	public function before_cart_totals() {
+		// If there then call start_checkout() else do nothing so page loads as normal.
+		if ( ! empty( $_GET['startcmocheckout'] ) && 'true' === $_GET['startcmocheckout'] ) {
+			// Trying to prevent auto running checkout when back button is pressed from PayPal page.
+			$_GET['startcmocheckout'] = 'false';
+			woo_cmo_start_checkout();
+		}
 	}
 
 
@@ -36,7 +48,7 @@ class WC_Gateway_CMO_Cart_Handler {
 
 		$imgpath = $includes_path . '../assets/img/woocmo.png';
 
-		$express_checkout_img_url = apply_filters( 'woocommerce_paypal_express_checkout_button_img_url', sprintf( 'http://localhost:3000/cmo-checkout.png', $settings->button_size ) );
+		$express_checkout_img_url = apply_filters( 'woocommerce_paypal_express_checkout_button_img_url', sprintf( 'http://localhost:3000/woocmo-button.png', $settings->button_size ) );
 		$paypal_credit_img_url    = apply_filters( 'woocommerce_paypal_express_checkout_credit_button_img_url', sprintf( 'https://www.checkmeout.ph/static/media/checkmeout_logo.be95fe71.png', $settings->button_size ) );
 
 		// billing details on checkout page to calculate shipping costs
@@ -50,13 +62,16 @@ class WC_Gateway_CMO_Cart_Handler {
 		?>
 		<div class="wcppec-checkout-buttons woo_pp_cart_buttons_div">
 
+
+			<br />
+			
 			<?php if ( has_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout' ) ) : ?>
 				<div class="wcppec-checkout-buttons__separator">
 					<?php _e( '&mdash; or &mdash;', 'woocommerce-gateway-paypal-express-checkout' ); ?>
 				</div>
 			<?php endif; ?>
 
-
+			<br />
 
 			<a href="<?php echo esc_url( add_query_arg( array( 'startcmocheckout' => 'true' ), wc_get_page_permalink( 'cart' ) ) ); ?>" id="" class="">
 				<img src="<?php echo esc_url( $express_checkout_img_url ); ?>" alt="<?php _e( 'Check out with PayPal', 'woocommerce-gateway-paypal-express-checkout' ); ?>" style="width: auto; height: auto;">

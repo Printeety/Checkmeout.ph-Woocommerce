@@ -12,7 +12,7 @@ class WC_Gateway_CMO_Checkout_Handler {
 	/**
 	 * Cached result from self::get_checkout_defails.
 	 *
-	 * @since 1.2.0
+	 * @since 1.0
 	 *
 	 * @var CMO_Checkout_Details
 	 */
@@ -43,7 +43,9 @@ class WC_Gateway_CMO_Checkout_Handler {
 	}
 
 	public function get_cmo_order_url() {
-		return 'test';
+
+		$client       = wc_gateway_cmo()->client;
+		$response = $client->set_cmo_checkout( array() );
 	}
 
 }

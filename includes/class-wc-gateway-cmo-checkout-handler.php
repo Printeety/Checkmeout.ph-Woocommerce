@@ -45,7 +45,7 @@ class WC_Gateway_CMO_Checkout_Handler {
 	public function get_cmo_order_url() {
 
 		$client       = wc_gateway_cmo()->client;
-		$response = $client->set_cmo_checkout( array() );
+		return $client->set_cmo_checkout( array() );
 	}
 
 }

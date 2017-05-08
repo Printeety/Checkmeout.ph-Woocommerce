@@ -5,12 +5,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * PayPal NVP (Name-Value Pair) API client. This client supports both certificate
- * and signature for authentication.
- *
- * @see https://developer.paypal.com/docs/classic/api/#ec
  */
 class WC_Gateway_CMO_Client {
+
+	const INVALID_CREDENTIAL_ERROR  = 1;
+	const INVALID_ENVIRONMENT_ERROR = 2;
+	const REQUEST_ERROR             = 3;
 
 	/**
 	 * Make a remote request to CMO API.
@@ -25,24 +25,31 @@ class WC_Gateway_CMO_Client {
 
 			// First, add in the necessary credential parameters.
 			//$body = apply_filters( 'woocommerce_paypal_express_checkout_request_body', array_merge( $params, $this->_credential->get_request_params() ) );
+			$body = array(
+						"product" => "pending",
+    					"amount" => 100,
+    					"receptacle" => "regular",
+    					"image" => "test"
+    		);
+
 			$args = array(
-				'method'      => 'GET',
-				'body'        => '',
+				'method'      => 'POST',
+				'body'        => $body,
 				'user-agent'  => __CLASS__,
 				'httpversion' => '1.1',
 				'timeout'     => 30,
 			);
 
 			// For cURL transport.
-			add_action( 'http_api_curl', array( /*$this->_credential*/'', 'configure_curl' ), 10, 3 );
+			//add_action( 'http_api_curl', array( /*$this->_credential*/'', 'configure_curl' ), 10, 3 );
 
 			//wc_gateway_ppec_log( sprintf( '%s: remote request to %s with params: %s', __METHOD__, $this->get_endpoint(), print_r( $body, true ) ) );
 			
 			//$resp = wp_safe_remote_post( 'http://api.staging.checkmeout.ph/v1/receptacles', $args );
-			$resp = wp_remote_get( 'http://cmo-api.dev/v1/ecommerce-redirect', $args );
-			var_dump($resp);exit;
-			//return $this->_process_response( $resp );
 
+			$resp = wp_remote_post( 'http://cmo-api.dev/v1/plugins/checkout', $args );
+			
+			return $this->_process_response( $resp );
 		} catch ( Exception $e ) {
 			return $$e;
 		}
@@ -53,14 +60,21 @@ class WC_Gateway_CMO_Client {
 			'http://cmo-api.dev/v1/ecommerce-redirect','', '');
 	}
 
+	protected function _process_response( $response ) {
+		if ( is_wp_error( $response ) ) {
+			throw new Exception( sprintf( __( 'An error occurred while trying to connect to CMO: %s', 'woocommerce-gateway-cmo' ), $response->get_error_message() ), self::REQUEST_ERROR );
+		}
+
+		parse_str( wp_remote_retrieve_body( $response ), $result );
+
+		return json_decode( key($result) );
+	}
+
 	/**
 	 * Initiates an CMO Checkout transaction.
 	 *
 	 */
 	public function set_cmo_checkout( array $params ) {
-		// $params['METHOD']  = 'SetExpressCheckout';
-		// $params['VERSION'] = self::API_VERSION;
-
 		return $this->_request( $params );
 	}
 }	

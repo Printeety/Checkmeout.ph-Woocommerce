@@ -2,12 +2,11 @@
 
 function woo_cmo_start_checkout() {
 	$checkout = wc_gateway_cmo()->checkout;
-	
-	try {
-		$redirect_url = $checkout->get_cmo_order_url();
-		var_dump($redirect_url);exit;
 
-		wp_safe_redirect( $redirect_url );
+	try {
+		$result = $checkout->get_cmo_order_url();
+
+		wp_redirect( $result->link );
 		exit;
 	} catch( PayPal_API_Exception $e ) {
 		wc_add_notice( $e->getMessage(), 'error' );

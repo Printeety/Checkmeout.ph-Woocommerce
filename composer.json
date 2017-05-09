@@ -1,0 +1,20 @@
+{
+    "name": "lbcx/cmo-woo",
+    "description": "cmo plugin for woo commerce",
+    "type": "plugin",
+    "license": "gpl",
+    "authors": [
+        {
+            "name": "Hans Torres",
+            "email": "hans.torres@98labs.com"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "6.1.*"
+    },
+    "autoload": {
+        "classmap": [
+            "test/"
+        ]
+    }
+}

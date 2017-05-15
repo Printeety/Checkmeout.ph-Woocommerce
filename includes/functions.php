@@ -5,7 +5,7 @@ function woo_cmo_start_checkout() {
 
 	try {
 		$result = $checkout->get_cmo_order_url();
-
+        var_dump($result);
 		wp_redirect( $result->link );
 		exit;
 	} catch( PayPal_API_Exception $e ) {

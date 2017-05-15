@@ -28,12 +28,24 @@ class WC_Gateway_CMO_Client {
 
 			// First, add in the necessary credential parameters.
 			//$body = apply_filters( 'woocommerce_paypal_express_checkout_request_body', array_merge( $params, $this->_credential->get_request_params() ) );
+			
+			$details = $this->_get_details_from_cart();
+			
+//				$body = array(
+////						"shipping" => $details->shipping,
+////						"tax"	=> $details->order_tax,
+////    				"sub_total" => $details->total_item_amount,
+////    				"grand_total" => $details->order_total,
+////    				"products" => $details->items
+////    		);
+//
+
 			$body = array(
-						"product" => "pending",
-    					"amount" => 100,
-    					"receptacle" => "regular",
-    					"image" => "test"
-    		);
+				"product" => "mixed",
+				"amount" => $details['order_total'],
+				"receptacle" => "regular",
+				"image" => "test"
+			);
 
 			$args = array(
 				'method'      => 'POST',
@@ -49,8 +61,7 @@ class WC_Gateway_CMO_Client {
 			//$resp = wp_safe_remote_post( 'http://api.staging.checkmeout.ph/v1/receptacles', $args );
 
 			$resp = wp_remote_post( 'http://cmo-api.dev/v1/plugins/checkout', $args ); // TODO : centralize this? settings value maybe
-			$this->_get_details_from_cart();
-			
+			var_dump($resp);
 			return $this->_process_response( $resp );
 		} catch ( Exception $e ) {
 			return $$e;
@@ -98,7 +109,7 @@ class WC_Gateway_CMO_Client {
 			'total_item_amount' => round( WC()->cart->cart_contents_total, $decimals ),
 			'order_tax'         => round( WC()->cart->tax_total + WC()->cart->shipping_tax_total, $decimals ),
 			'shipping'          => round( WC()->cart->shipping_total, $decimals ),
-			'items'				=> $this->_get_items_from_cart()
+			'items'							=> $this->_get_items_from_cart()
 		);
 
 		$details['order_total'] = round(
@@ -139,12 +150,9 @@ class WC_Gateway_CMO_Client {
 			// Get the image link based on the post thumbnail
 			$postID = $values['data']->post->ID;
 			$product_meta = get_post_meta($postID);
-    		$img = wp_get_attachment_image( $product_meta['_thumbnail_id'][0], 'full' );
-    		$imgSrc = (string) reset(simplexml_import_dom(DOMDocument::loadHTML($img))->xpath("//img/@src"));
+    	$img = wp_get_attachment_image( $product_meta['_thumbnail_id'][0], 'full' );
+    	$imgSrc = (string) reset(simplexml_import_dom(DOMDocument::loadHTML($img))->xpath("//img/@src"));
     
-
-			$imgSrc = (string) reset(simplexml_import_dom(DOMDocument::loadHTML($values['data']->post->post_content))->xpath("//img/@src"));
-
 			if ( version_compare( WC_VERSION, '3.0', '<' ) ) {
 				$name = $values['data']->post->post_title;
 				$description = $values['data']->post->post_content;
@@ -156,11 +164,12 @@ class WC_Gateway_CMO_Client {
 
 			// Parse data to only return needed item values
 			$item   = array(
-				'name'        => $name,
+				'product'        => $name,
 				'description' => $description,
 				'quantity'    => $values['quantity'],
 				'amount'      => $amount,
-				'image_link'  => $imgSrc
+				'image'  => $imgSrc,
+				'receptacle'	=> 'regular'
 			);
 
 			$items[] = $item;

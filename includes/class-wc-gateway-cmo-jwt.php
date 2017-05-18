@@ -25,9 +25,7 @@ class WC_Gateway_CMO_Jwt {
 		
 		$signature = $this->_sign($header, $payload, wc_gateway_cmo()->settings->secret_key);
 		
-		$data =  $this->__base64_encode_safe(json_encode($header), true) . '.' . $this->__base64_encode_safe(json_encode($payload), true) . '.' . $signature;
-		var_dump($data);exit;
-		return wc_gateway_cmo()->settings->api_key;
+		return $this->__base64_encode_safe(json_encode($header), true) . '.' . $this->__base64_encode_safe(json_encode($payload), true) . '.' . $signature;
 	}
 	
 	private function _sign($header, $payload, $secret_key, $alg = 'HS256')

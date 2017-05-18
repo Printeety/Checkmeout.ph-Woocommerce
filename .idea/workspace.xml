@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64634b8a-c2f6-42bd-b3fe-23ec9d279e6e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-client.php" afterPath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-client.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-jwt.php" afterPath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-jwt.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -73,8 +72,8 @@
       <file leaf-file-name="class-wc-gateway-cmo-jwt.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-jwt.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="22" />
+            <state relative-caret-position="350">
+              <caret line="27" column="151" lean-forward="false" selection-start-line="27" selection-start-column="151" selection-end-line="27" selection-end-column="151" />
               <folding>
                 <element signature="e#6#90#0#PHP" expanded="true" />
               </folding>
@@ -355,7 +354,7 @@
       <updated>1494330260511</updated>
       <workItem from="1494330262495" duration="6134000" />
       <workItem from="1494933647109" duration="5336000" />
-      <workItem from="1495023459855" duration="10294000" />
+      <workItem from="1495023459855" duration="10823000" />
     </task>
     <servers />
   </component>
@@ -392,7 +391,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21764000" />
+    <option name="totallyTimeSpent" value="22293000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1023" extended-state="6" />
@@ -680,8 +679,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-jwt.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="22" />
+        <state relative-caret-position="350">
+          <caret line="27" column="151" lean-forward="false" selection-start-line="27" selection-start-column="151" selection-end-line="27" selection-end-column="151" />
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
           </folding>

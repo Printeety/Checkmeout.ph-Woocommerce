@@ -65,7 +65,6 @@ class WC_Gateway_CMO_Settings {
 		$this->_settings          = (array) get_option( 'woocommerce_checkmeout_settings', array() );
 		
 		$this->_is_setting_loaded = true;
-//		var_dump($this->_settings);exit;
 		return $this;
 	}
 	
@@ -86,42 +85,11 @@ class WC_Gateway_CMO_Settings {
 	}
 	
 	/**
-	 * TODO : generate the token for the API REQUEST
-	 *
-	 * @return
-	 */
-	public function get_live_api_credentials() {
-		return null;
-	}
-	
-	/**
-	 * TODO: Should we support a sandbox??
-	 *
-	 * @return
-	 */
-	public function get_sandbox_api_credentials() {
-		return null;
-	}
-	
-	/**
 	 * TODO : should be put the url generator here?
-	 *
 	 *
 	 * @return string redirect URL
 	 */
 	public function get_cmo_redirect_url( $token, $commit = false ) {
-//		$url = 'https://www.';
-//
-//		if ( 'live' !== $this->environment ) {
-//			$url .= 'sandbox.';
-//		}
-//
-//		$url .= 'paypal.com/checkoutnow?token=' . urlencode( $token );
-//
-//		if ( $commit ) {
-//			$url .= '&useraction=commit';
-//		}
-		
 		return null;
 	}
 	
@@ -141,15 +109,6 @@ class WC_Gateway_CMO_Settings {
 	 */
 	public function is_logging_enabled() {
 		return 'yes' === $this->debug;
-	}
-	
-	/**
-	 * Get active environment from setting.
-	 *
-	 * @return string
-	 */
-	public function get_environment() {
-		return 'sandbox' === $this->environment ? 'sandbox' : 'live';
 	}
 	
 	/**

@@ -24,20 +24,19 @@ class WC_Gateway_CMO_Client {
 	protected function _request( array $params ) {
 		try {
 			//$this->_validate_request();
-
 			// First, add in the necessary credential parameters.
 			//$body = apply_filters( 'woocommerce_paypal_express_checkout_request_body', array_merge( $params, $this->_credential->get_request_params() ) );
 			
 			$details = $this->_get_details_from_cart();
 			
+// TODO : use this for the cart function
 //				$body = array(
-////						"shipping" => $details->shipping,
-////						"tax"	=> $details->order_tax,
-////    				"sub_total" => $details->total_item_amount,
-////    				"grand_total" => $details->order_total,
-////    				"products" => $details->items
-////    		);
-//
+//						"shipping" => $details->shipping,
+//						"tax"	=> $details->order_tax,
+//    				"sub_total" => $details->total_item_amount,
+//    				"grand_total" => $details->order_total,
+//    				"products" => $details->items
+//    		);
 
 			$body = array(
 				"product" => "mixed",
@@ -60,7 +59,8 @@ class WC_Gateway_CMO_Client {
 			//$resp = wp_safe_remote_post( 'http://api.staging.checkmeout.ph/v1/receptacles', $args );
 
 			$resp = wp_remote_post( 'http://cmo-api.dev/v1/plugins/checkout', $args ); // TODO : centralize this? settings value maybe
-//			var_dump($resp);
+			var_dump($resp);exit;
+			
 			return $this->_process_response( $resp );
 		} catch ( Exception $e ) {
 			return $$e;

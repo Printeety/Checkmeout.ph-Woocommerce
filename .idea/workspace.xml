@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64634b8a-c2f6-42bd-b3fe-23ec9d279e6e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/includes/class-wc-gateway-settings.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/cmo-woo.iml" afterPath="$PROJECT_DIR$/.idea/cmo-woo.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-jwt.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/abstracts/abstract-wc-gateway-cmo.php" afterPath="$PROJECT_DIR$/includes/abstracts/abstract-wc-gateway-cmo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmo-woo.php" afterPath="$PROJECT_DIR$/cmo-woo.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-cart-handler.php" afterPath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-cart-handler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-checkout-handler.php" afterPath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-checkout-handler.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-client.php" afterPath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-client.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-plugin.php" afterPath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-plugin.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/class-wc-gateway-cmo.php" afterPath="$PROJECT_DIR$/includes/class-wc-gateway-cmo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/class-wc-gateway-settings.php" afterPath="$PROJECT_DIR$/includes/class-wc-gateway-settings.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/functions.php" afterPath="$PROJECT_DIR$/includes/functions.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,11 +26,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="class-wc-gateway-cmo.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="class-wc-gateway-cmo-checkout-handler.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-checkout-handler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1035">
-              <caret line="47" column="36" lean-forward="false" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="36" />
+            <state relative-caret-position="327">
+              <caret line="37" column="39" lean-forward="false" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -37,19 +49,11 @@
       <file leaf-file-name="class-wc-gateway-cmo-cart-handler.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-cart-handler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="18" column="25" lean-forward="false" selection-start-line="17" selection-start-column="6" selection-end-line="18" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="class-wc-gateway-cmo.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-              <folding />
+            <state relative-caret-position="1242">
+              <caret line="56" column="140" lean-forward="false" selection-start-line="56" selection-start-column="140" selection-end-line="56" selection-end-column="140" />
+              <folding>
+                <element signature="e#1913#1947#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -57,19 +61,31 @@
       <file leaf-file-name="class-wc-gateway-cmo-gateway-loader.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-gateway-loader.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="20" column="4" lean-forward="false" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+            <state relative-caret-position="161">
+              <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="class-wc-gateway-cmo-client.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="class-wc-gateway-cmo-client.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-client.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-593">
-              <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+            <state relative-caret-position="-184">
+              <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="class-wc-gateway-cmo-jwt.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-jwt.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="14" column="3" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+              <folding>
+                <element signature="e#6#90#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -78,7 +94,7 @@
         <entry file="file://$PROJECT_DIR$/includes/functions.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="69">
-              <caret line="3" column="16" lean-forward="false" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+              <caret line="3" column="43" lean-forward="false" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -87,9 +103,11 @@
       <file leaf-file-name="cmo-woo.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cmo-woo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="253">
+              <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+              <folding>
+                <element signature="e#6#249#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -97,28 +115,18 @@
       <file leaf-file-name="class-wc-gateway-cmo-plugin.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-plugin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1611">
-              <caret line="120" column="4" lean-forward="false" selection-start-line="120" selection-start-column="4" selection-end-line="120" selection-end-column="4" />
+            <state relative-caret-position="139">
+              <caret line="105" column="69" lean-forward="false" selection-start-line="105" selection-start-column="69" selection-end-line="105" selection-end-column="69" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="abstract-wc-gateway-cmo.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/includes/abstracts/abstract-wc-gateway-cmo.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="86">
-              <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="class-wc-gateway-settings.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="class-wc-gateway-settings.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-settings.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="68" column="4" lean-forward="false" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="4" />
+            <state relative-caret-position="2024">
+              <caret line="88" column="4" lean-forward="false" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -132,10 +140,12 @@
       <find>WC_Gateway_CMO</find>
       <find>WC_Gateway_CMO_checkmeout</find>
       <find>WC_Gateway_CMO_Gateway_Loader</find>
-      <find>gateway_loader</find>
       <find>update_option</find>
       <find>woocommerce_checkmeout_settings</find>
       <find>checkmeout</find>
+      <find>checkout2</find>
+      <find>checkmeout2</find>
+      <find>gateway_loader</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -148,14 +158,18 @@
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/test/initial.php" />
         <option value="$PROJECT_DIR$/test/DependencyFailureTest.php" />
-        <option value="$PROJECT_DIR$/includes/functions.php" />
-        <option value="$PROJECT_DIR$/includes/class-wc-gateway-cmo-client.php" />
-        <option value="$PROJECT_DIR$/includes/class-wc-gateway-cmo-cart-handler.php" />
         <option value="$PROJECT_DIR$/includes/abstracts/abstract-wc-gateway-cmo.php" />
         <option value="$PROJECT_DIR$/includes/class-wc-gateway-cmo-gateway-loader.php" />
-        <option value="$PROJECT_DIR$/includes/class-wc-gateway-cmo-plugin.php" />
-        <option value="$PROJECT_DIR$/includes/class-wc-gateway-cmo.php" />
+        <option value="$PROJECT_DIR$/cmo-woo.php" />
+        <option value="$PROJECT_DIR$/includes/functions.php" />
         <option value="$PROJECT_DIR$/includes/class-wc-gateway-settings.php" />
+        <option value="$PROJECT_DIR$/includes/class-wc-gateway-cmo.php" />
+        <option value="$PROJECT_DIR$/includes/abstracts/class-wc-gateway-cmo-jwt.php" />
+        <option value="$PROJECT_DIR$/includes/class-wc-gateway-cmo-plugin.php" />
+        <option value="$PROJECT_DIR$/includes/class-wc-gateway-cmo-jwt.php" />
+        <option value="$PROJECT_DIR$/includes/class-wc-gateway-cmo-cart-handler.php" />
+        <option value="$PROJECT_DIR$/includes/class-wc-gateway-cmo-checkout-handler.php" />
+        <option value="$PROJECT_DIR$/includes/class-wc-gateway-cmo-client.php" />
       </list>
     </option>
   </component>
@@ -349,7 +363,7 @@
       <updated>1494330260511</updated>
       <workItem from="1494330262495" duration="6134000" />
       <workItem from="1494933647109" duration="5336000" />
-      <workItem from="1495023459855" duration="6108000" />
+      <workItem from="1495023459855" duration="8909000" />
     </task>
     <servers />
   </component>
@@ -386,7 +400,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17578000" />
+    <option name="totallyTimeSpent" value="20379000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1023" extended-state="6" />
@@ -476,7 +490,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#6#249#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -556,7 +572,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#6#249#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -584,54 +602,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmo-woo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-cart-handler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="18" column="25" lean-forward="false" selection-start-line="17" selection-start-column="6" selection-end-line="18" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-checkout-handler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="47" column="36" lean-forward="false" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="16" lean-forward="false" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-gateway-loader.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="20" column="4" lean-forward="false" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-plugin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1611">
-          <caret line="120" column="4" lean-forward="false" selection-start-line="120" selection-start-column="4" selection-end-line="120" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/abstracts/abstract-wc-gateway-cmo.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
@@ -640,26 +610,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo.php">
+    <entry file="file://$PROJECT_DIR$/cmo-woo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-          <folding />
+        <state relative-caret-position="253">
+          <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+          <folding>
+            <element signature="e#6#249#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-client.php">
+    <entry file="file://$PROJECT_DIR$/includes/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-593">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+        <state relative-caret-position="69">
+          <caret line="3" column="43" lean-forward="false" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-settings.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="68" column="4" lean-forward="false" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="4" />
+        <state relative-caret-position="2024">
+          <caret line="88" column="4" lean-forward="false" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-jwt.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="3" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+          <folding>
+            <element signature="e#6#90#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-gateway-loader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-plugin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="105" column="69" lean-forward="false" selection-start-line="105" selection-start-column="69" selection-end-line="105" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-cart-handler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1242">
+          <caret line="56" column="140" lean-forward="false" selection-start-line="56" selection-start-column="140" selection-end-line="56" selection-end-column="140" />
+          <folding>
+            <element signature="e#1913#1947#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-checkout-handler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="37" column="39" lean-forward="false" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-client.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-184">
+          <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
           <folding />
         </state>
       </provider>

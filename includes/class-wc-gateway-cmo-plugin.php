@@ -54,16 +54,9 @@ class WC_Gateway_CMO_Plugin {
 	public function __construct( $file, $version ) {
 		$this->file    = $file;
 		$this->version = $version;
-
-		// Path.
 		$this->plugin_path   = trailingslashit( plugin_dir_path( $this->file ) );
 		$this->plugin_url    = trailingslashit( plugin_dir_url( $this->file ) );
 		$this->includes_path = $this->plugin_path . trailingslashit( 'includes' );
-
-		// Updates
-		// if ( version_compare( $version, get_option( 'wc_ppec_version' ), '>' ) ) {
-		// 	$this->run_updater( $version );
-		// }
 	}
 
 	public function bootstrap() {
@@ -106,29 +99,28 @@ class WC_Gateway_CMO_Plugin {
 	 * Load handlers.
 	 */
 	protected function _load_handlers() {
-		// Client.
-		//$this->_load_client();
+		//$this->_load_client(); TODO : check implem
 
 		// Load handlers.
 		require_once($this->includes_path . 'class-wc-gateway-settings.php');
+		require_once($this->includes_path . 'class-wc-gateway-cmo-jwt.php');
 		require_once( $this->includes_path . 'class-wc-gateway-cmo-gateway-loader.php' );
 		require_once( $this->includes_path . 'class-wc-gateway-cmo-cart-handler.php' );
 		require_once( $this->includes_path . 'class-wc-gateway-cmo-checkout-handler.php' );
 		require_once( $this->includes_path . 'class-wc-gateway-cmo-client.php' );
-
-			
-		$this->settings       = new WC_Gateway_Cmo_Settings();
 		
+		$this->settings       = new WC_Gateway_Cmo_Settings();
+		$this->jwt       			= new WC_Gateway_Cmo_JWT();
 		$this->gateway_loader = new WC_Gateway_CMO_Gateway_Loader();
 		$this->cart           = new WC_Gateway_CMO_Cart_Handler();
 		$this->checkout       = new WC_Gateway_CMO_Checkout_Handler();
 		$this->client 		  = new WC_Gateway_CMO_Client();
-		
-		
 	}
-
+	
 	/**
 	 * Link to settings screen.
+	 *
+	 * @return mixed
 	 */
 	public function get_admin_setting_link() {
 		if ( version_compare( WC()->version, '2.6', '>=' ) ) {
@@ -138,14 +130,19 @@ class WC_Gateway_CMO_Plugin {
 		}
 		return admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . $section_slug );
 	}
-
-	// Notes : Change this later to point to CMO checkout plugin doc
+	
+	/**
+	 * TODO : add correct docs and plugin links
+	 *
+	 * @param $links
+	 * @return array
+	 */
 	public function plugin_action_links( $links ) {
 		$setting_url = $this->get_admin_setting_link();
 
 		$plugin_links = array(
-			'<a href="' . esc_url( $setting_url ) . '">' . esc_html__( 'Settings', 'woocommerce-gateway-paypal-express-checkout' ) . '</a>',
-			'<a href="https://docs.woocommerce.com/document/paypal-express-checkout/">' . esc_html__( 'Docs', 'woocommerce-gateway-paypal-express-checkout' ) . '</a>',
+			'<a href="' . esc_url( $setting_url ) . '">' . esc_html__( 'Settings', 'woocommerce-gateway-cmo-checkout' ) . '</a>',
+			'<a href="https://docs.woocommerce.com/document/cmo-checkout/">' . esc_html__( 'Docs', 'woocommerce-gateway-cmo-checkout' ) . '</a>',
 		);
 		return array_merge( $plugin_links, $links );
 	}

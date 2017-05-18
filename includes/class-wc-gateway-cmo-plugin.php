@@ -108,6 +108,7 @@ class WC_Gateway_CMO_Plugin {
 		require_once( $this->includes_path . 'class-wc-gateway-cmo-cart-handler.php' );
 		require_once( $this->includes_path . 'class-wc-gateway-cmo-checkout-handler.php' );
 		require_once( $this->includes_path . 'class-wc-gateway-cmo-client.php' );
+		require_once( $this->includes_path . 'class-wc-gateway-cmo-callback-handler.php' );
 		
 		$this->settings       = new WC_Gateway_Cmo_Settings();
 		$this->jwt       			= new WC_Gateway_Cmo_JWT();

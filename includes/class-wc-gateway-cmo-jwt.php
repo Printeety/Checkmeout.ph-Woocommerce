@@ -11,6 +11,11 @@ class WC_Gateway_CMO_Jwt {
 	public function __construct()
 	{}
 	
+	/**
+	 * Generates the jwt string for CMO consumption
+	 *
+	 * @return string
+	 */
 	public function generateJWT()
 	{
 		$header = [
@@ -28,6 +33,16 @@ class WC_Gateway_CMO_Jwt {
 		return $this->__base64_encode_safe(json_encode($header), true) . '.' . $this->__base64_encode_safe(json_encode($payload), true) . '.' . $signature;
 	}
 	
+	/**
+	 * Function for signing the jwt token
+	 *
+	 * @param $header
+	 * @param $payload
+	 * @param $secret_key
+	 * @param string $alg
+	 * @return string
+	 * @throws Exception
+	 */
 	private function _sign($header, $payload, $secret_key, $alg = 'HS256')
 	{
 		// Build the data to be signed.
@@ -45,7 +60,14 @@ class WC_Gateway_CMO_Jwt {
 		return $signature;
 	}
 	
-	private function __base64_encode_safe($data)
+	/**
+	 * Function helper for triggering base64 encode
+	 *
+	 * @param $data
+	 * @param bool $flag
+	 * @return string
+	 */
+	private function __base64_encode_safe($data, $flag = true)
 	{
 		return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
 	}

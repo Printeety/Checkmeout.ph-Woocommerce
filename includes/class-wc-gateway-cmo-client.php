@@ -23,11 +23,10 @@ class WC_Gateway_CMO_Client {
 	 */
 	protected function _request( array $params ) {
 		try {
-			//$this->_validate_request();
-			// First, add in the necessary credential parameters.
-			//$body = apply_filters( 'woocommerce_paypal_express_checkout_request_body', array_merge( $params, $this->_credential->get_request_params() ) );
-			
 			$details = $this->_get_details_from_cart();
+			$jwt = wc_gateway_cmo()->jwt->generateJWT();
+			
+			var_dump($jwt);exit;
 			
 // TODO : use this for the cart function
 //				$body = array(

@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WC_Gateway_CMO_checkmeout extends WC_Gateway_CMO {
 	public function __construct() {
-		$this->id = 'checkmeout';
+		$this->id = 'checkmeout2';
 
 		parent::__construct();
 

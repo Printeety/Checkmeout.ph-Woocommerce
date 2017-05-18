@@ -15,12 +15,14 @@ class WC_Gateway_CMO_Cart_Handler {
 	 * Constructor.
 	 */
 	public function __construct() {
+//	    var_dump(wc_gateway_cmo()->settings);
+//	    echo "hans";exit;
+	    
 		// if ( ! wc_gateway_cmo()->settings->is_enabled() ) {
 		// 	return;
 		// }
 
 		add_action( 'woocommerce_before_cart_totals', array( $this, 'before_cart_totals' ) );
-		// add_action( 'woocommerce_widget_shopping_cart_buttons', array( $this, 'display_mini_paypal_button' ), 20 );
 		add_action( 'woocommerce_proceed_to_checkout', array( $this, 'display_cmo_button' ), 20 );
 		//add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 	}

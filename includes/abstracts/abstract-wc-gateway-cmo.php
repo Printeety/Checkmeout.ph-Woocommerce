@@ -1,4 +1,3 @@
-
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -6,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WC_Gateway_PPEC
+ * WC_Gateway_CMO
  */
 abstract class WC_Gateway_CMO extends WC_Payment_Gateway {
 
@@ -14,75 +13,64 @@ abstract class WC_Gateway_CMO extends WC_Payment_Gateway {
 	 * Constructor.
 	 */
 	public function __construct() {
+		$this->method_title       = __( 'CMO Checkout', 'woocommerce-gateway-cmo-checkout' );
+		$this->method_description = __( 'Allow customers to conveniently checkout directly with CMO.', 'woocommerce-gateway-cmo-checkout' );
 
 		$this->init_form_fields();
-		//$this->init_settings();
-
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
+	}
 
-		/*
-		$this->has_fields         = false;
-		$this->icon               = 'https://www.paypalobjects.com/webstatic/en_US/i/buttons/pp-acceptance-small.png';
-		$this->supports[]         = 'refunds';
-		$this->method_title       = __( 'PayPal Express Checkout', 'woocommerce-gateway-paypal-express-checkout' );
-		$this->method_description = __( 'Allow customers to conveniently checkout directly with PayPal.', 'woocommerce-gateway-paypal-express-checkout' );
+	public function process_admin_options() {
+		
+		
+		parent::process_admin_options();
 
-		if ( empty( $_GET['woo-paypal-return'] ) ) {
-			$this->order_button_text  = __( 'Continue to payment', 'woocommerce-gateway-paypal-express-checkout' );
-		}
-
-		wc_gateway_ppec()->ips->maybe_received_credentials();
-
-		$this->init_form_fields();
-		$this->init_settings();
-
-		$this->title        = $this->method_title;
-		$this->description  = '';
-		$this->enabled      = $this->get_option( 'enabled', 'yes' );
-		$this->button_size  = $this->get_option( 'button_size', 'large' );
-		$this->environment  = $this->get_option( 'environment', 'live' );
-		$this->mark_enabled = 'yes' === $this->get_option( 'mark_enabled', 'no' );
-
-		if ( 'live' === $this->environment ) {
-			$this->api_username    = $this->get_option( 'api_username' );
-			$this->api_password    = $this->get_option( 'api_password' );
-			$this->api_signature   = $this->get_option( 'api_signature' );
-			$this->api_certificate = $this->get_option( 'api_certificate' );
-			$this->api_subject     = $this->get_option( 'api_subject' );
-		} else {
-			$this->api_username    = $this->get_option( 'sandbox_api_username' );
-			$this->api_password    = $this->get_option( 'sandbox_api_password' );
-			$this->api_signature   = $this->get_option( 'sandbox_api_signature' );
-			$this->api_certificate = $this->get_option( 'sandbox_api_certificate' );
-			$this->api_subject     = $this->get_option( 'sandbox_api_subject' );
-		}
-
-		$this->debug                      = 'yes' === $this->get_option( 'debug', 'no' );
-		$this->invoice_prefix             = $this->get_option( 'invoice_prefix', 'WC-' );
-		$this->instant_payments           = 'yes' === $this->get_option( 'instant_payments', 'no' );
-		$this->require_billing            = 'yes' === $this->get_option( 'require_billing', 'no' );
-		$this->paymentaction              = $this->get_option( 'paymentaction', 'sale' );
-		$this->logo_image_url             = $this->get_option( 'logo_image_url' );
-		$this->subtotal_mismatch_behavior = $this->get_option( 'subtotal_mismatch_behavior', 'add' );
-
-		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
-
-		// Change gateway name if session is active
-		if ( ! is_admin() ) {
-			if ( wc_gateway_ppec()->checkout->is_started_from_checkout_page() ) {
-				$this->title        = $this->get_option( 'title' );
-				$this->description  = $this->get_option( 'description' );
-			}
-		}
-		*/
 	}
 
 	/**
 	 * Initialise Gateway Settings Form Fields.
 	 */
 	public function init_form_fields() {
-		//$this->form_fields = include( dirname( dirname( __FILE__ ) ) . '/settings/settings-ppec.php' );
 		 $this->form_fields = array(
+			 'enabled' => array(
+				 'title'   => __( 'Enable/Disable', 'woocommerce-gateway-cmo-express-checkout' ),
+				 'type'    => 'checkbox',
+				 'label'   => __( 'Enable CMO Checkout', 'woocommerce-gateway-cmo-checkout' ),
+				 'description' => __( 'This enables CMO Checkout which allows customers to checkout directly via checkmeout from your cart page.', 'woocommerce-gateway-cmo-checkout' ),
+				 'desc_tip'    => true,
+				 'default'     => 'yes',
+			 ),
+			 'cod' => array(
+			 	
+				 'title'       => __( 'COD', 'woocommerce-gateway-cmo-checkout' ),
+				 'type'        => 'checkbox',
+				 'label'   => __( 'Enable/Disable COD', 'woocommerce-gateway-cmo-checkout' ),
+				 'description' => __( 'This setting specifies whether you will process live transactions, or whether you will process simulated transactions using the PayPal Sandbox.', 'woocommerce-gateway-paypal-express-checkout' ),
+				 'default'     => 'yes',
+				 'desc_tip'    => true
+				 
+			 ),
+			 'credit_card' => array(
+				 'title'       => __( 'Credit Card', 'woocommerce-gateway-cmo-checkout' ),
+				 'type'        => 'checkbox',
+				 'label'   => __( 'Enable/Disable Credit Card', 'woocommerce-gateway-cmo-checkout' ),
+				 'description' => __( 'This setting specifies whether you will process live transactions, or whether you will process simulated transactions using the PayPal Sandbox.', 'woocommerce-gateway-paypal-express-checkout' ),
+				 'default'     => 'yes',
+				 'desc_tip'    => true
+			 ),
+			 'online' => array(
+				 'title'       => __( 'Online Banking', 'woocommerce-gateway-cmo-checkout' ),
+				 'type'        => 'checkbox',
+				 'label'   => __( 'Enable/Disable Online Banking', 'woocommerce-gateway-cmo-checkout' ),
+				 'description' => __( 'This setting specifies whether you will process live transactions, or whether you will process simulated transactions using the PayPal Sandbox.', 'woocommerce-gateway-paypal-express-checkout' ),
+				 'default'     => 'yes',
+				 'desc_tip'    => true
+			 ),
+		 'display_settings' => array(
+			 'title'       => __( 'Display Settings', 'woocommerce-gateway-cmo-checkout' ),
+			 'type'        => 'title',
+			 'description' => __( 'API credentials to allow transactions to the checkmeout application', 'woocommerce-gateway-cmo-checkout' ),
+		 ),
      'api_key' => array(
           'title' => __( 'CheckMeOut API Key', 'woocommerce' ),
           'type' => 'text',

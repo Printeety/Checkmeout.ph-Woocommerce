@@ -10,7 +10,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  */
 class WC_Gateway_CMO_Client {
-
 	const INVALID_CREDENTIAL_ERROR  = 1;
 	const INVALID_ENVIRONMENT_ERROR = 2;
 	const REQUEST_ERROR             = 3;
@@ -61,20 +60,27 @@ class WC_Gateway_CMO_Client {
 			//$resp = wp_safe_remote_post( 'http://api.staging.checkmeout.ph/v1/receptacles', $args );
 
 			$resp = wp_remote_post( 'http://cmo-api.dev/v1/plugins/checkout', $args ); // TODO : centralize this? settings value maybe
-			var_dump($resp);
+//			var_dump($resp);
 			return $this->_process_response( $resp );
 		} catch ( Exception $e ) {
 			return $$e;
 		}
 	}
-
-
+	
+	/**
+	 * TODO : should fetch the correct endpoint from settings
+	 * @return string
+	 */
 	public function get_endpoint() {
 		return sprintf(
 			'http://cmo-api.dev/v1/ecommerce-redirect','', '');
 	}
-
-
+	
+	/**
+	 * @param $response
+	 * @return mixed
+	 * @throws Exception
+	 */
 	protected function _process_response( $response ) {
 		if ( is_wp_error( $response ) ) {
 			throw new Exception( sprintf( __( 'An error occurred while trying to connect to CMO: %s', 'woocommerce-gateway-cmo' ), $response->get_error_message() ), self::REQUEST_ERROR );
@@ -84,8 +90,7 @@ class WC_Gateway_CMO_Client {
 
 		return json_decode( key($result) );
 	}
-
-
+	
 	/**
 	 * Initiates an CMO Checkout transaction.
 	 *
@@ -93,7 +98,7 @@ class WC_Gateway_CMO_Client {
 	public function set_cmo_checkout( array $params ) {
 		return $this->_request( $params );
 	}
-
+	
 	/**
 	 * Gets the general details from the cart
 	 *
@@ -116,8 +121,7 @@ class WC_Gateway_CMO_Client {
 			$details['total_item_amount'] + $details['order_tax'] + $details['shipping'],
 			$decimals
 		);
-
-
+		
 		// If the totals don't line up, adjust the tax to make it work (it's
 		// probably a tax mismatch).
 		$wc_order_total = round( WC()->cart->total, $decimals );
@@ -130,16 +134,12 @@ class WC_Gateway_CMO_Client {
 		if ( ! is_numeric( $details['shipping'] ) ) {
 			$details['shipping'] = 0;
 		}
-
-
 		return $details;
 	}
-
+	
 	/**
-	 * Get the Items from the woo commerce cart
-	 *
-	 *
-	*/
+	 * @return array
+	 */
 	protected function _get_items_from_cart() {
 		$decimals = 2;
 
@@ -174,7 +174,6 @@ class WC_Gateway_CMO_Client {
 
 			$items[] = $item;
 		}
-
 		return $items;
 	}
 }	

@@ -24,8 +24,8 @@ class WC_Gateway_CMO_Callback_Handler {
 		$inputJSON = file_get_contents('php://input');
 		$input = json_decode($inputJSON, TRUE);
 		
-//		var_dump($_REQUEST);
-//		var_dump($input);
-//		exit;
+		var_dump($_REQUEST);
+		var_dump($input);
+		exit;
 	}
 }

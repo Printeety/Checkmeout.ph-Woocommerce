@@ -20,6 +20,7 @@ class WC_Gateway_CMO_Checkout_Handler {
 
 	public function __construct() {
 		add_action( 'init', array( $this, 'init' ) );
+		add_action( 'wp', array( $this, 'return_from_cmo' ) );
 	}
 
 	/**
@@ -39,5 +40,11 @@ class WC_Gateway_CMO_Checkout_Handler {
 		$client       = wc_gateway_cmo()->client;
 		return $client->set_cmo_checkout( array() );
 	}
-
+	
+	//TODO : handle return process, create order here and copy the billing details maybe?
+	public function return_from_cmo() {
+		if ( empty( $_GET['woo-cmo-return'] ) ) {
+			echo "invalid";exit;
+		}
+	}
 }

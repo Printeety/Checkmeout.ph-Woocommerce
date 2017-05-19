@@ -25,40 +25,47 @@ class WC_Gateway_CMO_Client {
 		try {
 			$details = $this->_get_details_from_cart();
 			$jwt = wc_gateway_cmo()->jwt->generateJWT();
-			
-			var_dump($jwt);exit;
+			$successUrl = $this->_get_return_url(array());
 			
 // TODO : use this for the cart function
-//				$body = array(
-//						"shipping" => $details->shipping,
-//						"tax"	=> $details->order_tax,
-//    				"sub_total" => $details->total_item_amount,
-//    				"grand_total" => $details->order_total,
-//    				"products" => $details->items
-//    		);
-
-			$body = array(
-				"product" => "mixed",
-				"amount" => $details['order_total'],
-				"receptacle" => "regular",
-				"image" => "test"
-			);
+				$body = array(
+						"shipping" => $details['shipping'],
+						"tax"	=> $details['order_tax'],
+						"insurance"=> 0,
+    				"sub_total" => $details['total_item_amount'],
+    				"grand_total" => $details['order_total'],
+					  "postbackUrl"=> $successUrl,
+					 	"successUrl"=> $successUrl,
+						"failedUrl"=> $successUrl,
+						"errorUrl"=> $successUrl,
+						"items" => $details['items']
+    		);
+				
+				
+//			$body = array(
+//				"product" => "mixed",
+//				"amount" => $details['order_total'],
+//				"receptacle" => "regular",
+//				"image" => "test"
+//			);
 
 			$args = array(
 				'method'      => 'POST',
+				'headers'			=> array("Authorization"=> "Bearer " . $jwt),
 				'body'        => $body,
 				'user-agent'  => __CLASS__,
 				'httpversion' => '1.1',
 				'timeout'     => 30,
 			);
+			
+		//	var_dump($args);exit;
 
 			// For cURL transport.
 			//add_action( 'http_api_curl', array( /*$this->_credential*/'', 'configure_curl' ), 10, 3 );
 			//wc_gateway_ppec_log( sprintf( '%s: remote request to %s with params: %s', __METHOD__, $this->get_endpoint(), print_r( $body, true ) ) );		
 			//$resp = wp_safe_remote_post( 'http://api.staging.checkmeout.ph/v1/receptacles', $args );
 
-			$resp = wp_remote_post( 'http://cmo-api.dev/v1/plugins/checkout', $args ); // TODO : centralize this? settings value maybe
-			var_dump($resp);exit;
+			$resp = wp_remote_post( 'http://cmo-api.dev/v1/carts', $args ); // TODO : centralize this? settings value maybe
 			
 			return $this->_process_response( $resp );
 		} catch ( Exception $e ) {
@@ -174,5 +181,20 @@ class WC_Gateway_CMO_Client {
 			$items[] = $item;
 		}
 		return $items;
+	}
+	
+	/**
+	 * @param array $context_args
+	 * @return mixed
+	 */
+	protected function _get_return_url( array $context_args ) {
+		$query_args = array(
+			'woo-cmo-return' => 'true',
+		);
+		if ( $context_args['create_billing_agreement'] ) {
+			$query_args['create-billing-agreement'] = 'true';
+		}
+		
+		return add_query_arg( $query_args, wc_get_checkout_url() );
 	}
 }	

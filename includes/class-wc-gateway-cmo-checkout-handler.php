@@ -44,7 +44,9 @@ class WC_Gateway_CMO_Checkout_Handler {
 	//TODO : handle return process, create order here and copy the billing details maybe?
 	public function return_from_cmo() {
 		if ( empty( $_GET['woo-cmo-return'] ) ) {
-			echo "invalid";exit;
+			return;
 		}
+		// TODO : implement the process based on CMO reply
+		echo "capture return";exit;
 	}
 }

@@ -14,7 +14,7 @@ Callback and Routes
 `BREAD = browse, read, edit, add delete`
 
 * `/wc-api/wc_gateway_cmo`  - Callback url to contact the woo server regarding payments
-* `/?woo-cmo-return=true` - return URL to be passed to CMO. [ partially implemented - add the page ] 
+* `/?woo-cmo-return=true&order-id=[{order-id}]` - return URL to be passed to CMO. [ partially implemented - add the page ] 
 * `/?woo-cmo-failed` -[ not yet implemented ]
 * `/?woo-cmo-cancel` - [ not yet implemented ]
 

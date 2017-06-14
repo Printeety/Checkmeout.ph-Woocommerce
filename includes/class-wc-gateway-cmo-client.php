@@ -25,19 +25,31 @@ class WC_Gateway_CMO_Client {
 		try {
 			$details = $this->_get_details_from_cart();
 			$jwt = wc_gateway_cmo()->jwt->generateJWT();
-			$successUrl = $this->_get_return_url(array());
+			
+//			var_dump($details['items']);exit;
+			$order = wc_create_order();
+			foreach(  $details['items'] as $item ) {
+				$order->add_product( get_product( $item['item_id'] ), $item['quantity'] );
+			}
+			$order->set_status('pending');
+			$order->calculate_totals();
+			
+			$successUrl = $this->_get_return_url(array('order_id' => $order->id ));
+			
 			
 // TODO : use this for the cart function
 				$body = array(
+						"currency"					=> 'PHP', // TODO : should be from settings?
 						"shipping" => $details['shipping'],
 						"tax"	=> $details['order_tax'],
 						"insurance"=> 0,
     				"sub_total" => $details['total_item_amount'],
     				"grand_total" => $details['order_total'],
-					  "postbackUrl"=> $successUrl,
+					  "postbackUrl"=> 'http://cmo-woo.dev/wc-api/wc_gateway_cmo', // TODO : compose based on environment
 					 	"successUrl"=> $successUrl,
 						"failedUrl"=> $successUrl,
 						"errorUrl"=> $successUrl,
+						"external_id" => $order->id,
 						"items" => $details['items']
     		);
 				
@@ -152,7 +164,7 @@ class WC_Gateway_CMO_Client {
 		$items = array();
 		foreach ( WC()->cart->cart_contents as $cart_item_key => $values ) {
 			$amount = round( $values['line_subtotal'] / $values['quantity'] , $decimals );
-
+			//var_dump($values['data']);exit;
 			// Get the image link based on the post thumbnail
 			$postID = $values['data']->post->ID;
 			$product_meta = get_post_meta($postID);
@@ -170,6 +182,7 @@ class WC_Gateway_CMO_Client {
 
 			// Parse data to only return needed item values
 			$item   = array(
+				'item_id'	=> $postID,
 				'product'        => $name,
 				'description' => $description,
 				'quantity'    => $values['quantity'],
@@ -190,6 +203,7 @@ class WC_Gateway_CMO_Client {
 	protected function _get_return_url( array $context_args ) {
 		$query_args = array(
 			'woo-cmo-return' => 'true',
+			'order-id'	=> $context_args['order_id']
 		);
 		if ( $context_args['create_billing_agreement'] ) {
 			$query_args['create-billing-agreement'] = 'true';

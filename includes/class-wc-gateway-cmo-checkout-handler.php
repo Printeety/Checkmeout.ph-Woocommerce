@@ -46,7 +46,12 @@ class WC_Gateway_CMO_Checkout_Handler {
 		if ( empty( $_GET['woo-cmo-return'] ) ) {
 			return;
 		}
+		
+		$order = wc_get_order( $_GET['order-id'] );
+		wp_redirect( $order->get_checkout_order_received_url() );
+		exit;
+		
 		// TODO : implement the process based on CMO reply
-		echo "capture return";exit;
+		echo "capture return";
 	}
 }

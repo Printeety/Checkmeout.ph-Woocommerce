@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64634b8a-c2f6-42bd-b3fe-23ec9d279e6e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-checkout-handler.php" afterPath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-checkout-handler.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-client.php" afterPath="$PROJECT_DIR$/includes/class-wc-gateway-cmo-client.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/functions.php" afterPath="$PROJECT_DIR$/includes/functions.php" />
-    </list>
+    <list default="true" id="64634b8a-c2f6-42bd-b3fe-23ec9d279e6e" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +70,7 @@
       <file leaf-file-name="class-wc-gateway-cmo-client.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-client.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
+            <state relative-caret-position="93">
               <caret line="53" column="10" lean-forward="false" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
               <folding />
             </state>
@@ -369,7 +364,7 @@
       <workItem from="1496322381345" duration="9000" />
       <workItem from="1497427540057" duration="1885000" />
       <workItem from="1497447590393" duration="921000" />
-      <workItem from="1497450113426" duration="2088000" />
+      <workItem from="1497450113426" duration="2180000" />
     </task>
     <servers />
   </component>
@@ -406,7 +401,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35434000" />
+    <option name="totallyTimeSpent" value="35526000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1023" extended-state="6" />
@@ -838,7 +833,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/class-wc-gateway-cmo-client.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
+        <state relative-caret-position="93">
           <caret line="53" column="10" lean-forward="false" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
           <folding />
         </state>

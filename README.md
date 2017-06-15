@@ -1,5 +1,6 @@
 CheckMeOut Woo Ecommerce Plugin
 ------
+<<<<<<< HEAD
 Woo Commerce plugin to allow payments using [CheckMeOut](http://vincit.github.io/objection.js/) - uses mysql as the default client/dialect
 
 Includes the following projects/tools:
@@ -16,10 +17,22 @@ Simple Resources validation
 * A role can access several urls as defined in a config file (+option to define strategy, just like passport)
 
 Default Routes
+=======
+Woo Commerce plugin to allow payments using [CheckMeOut](http://vincit.github.io/objection.js/) - Payment and shipping app from lbcx.
+
+
+Settings
+------
+* CMO plugin settings will be save in the database using the WC_Gateway_CMO_Checkmeout class ID assignment
+* Settings would be loaded from the database using the class WC_Gateway_CMO_Settings and accessed by the woocommerce_checkmeout_settings option marker.
+
+Callback and Routes
+>>>>>>> b551a333f50cb3e8bbc9eddc7fce39fcae3e44ed
 ------
 
 `BREAD = browse, read, edit, add delete`
 
+<<<<<<< HEAD
 * `/` 
 * `/auth`
 * `/user/[BREAD]` - requires jwt token on Authorization header
@@ -62,3 +75,17 @@ TODO
 LICENSE
 ------
 WTFPL - Do What the Fuck You Want to Public License
+=======
+* `/wc-api/wc_gateway_cmo`  - Callback url to contact the woo server regarding payments
+* `/?woo-cmo-return=true&order-id=[{order-id}]` - return URL to be passed to CMO. [ partially implemented - add the page ] 
+* `/?woo-cmo-failed` -[ not yet implemented ]
+* `/?woo-cmo-cancel` - [ not yet implemented ]
+
+TODO 
+------
+
+capture payment
+* return page implementation
+* ORDER ID creation : should be on woo? On the call that gets the URL from cmo
+* SHIPPING DATA : Sync to woo from return route callback ?
+>>>>>>> b551a333f50cb3e8bbc9eddc7fce39fcae3e44ed

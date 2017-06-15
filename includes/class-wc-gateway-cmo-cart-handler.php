@@ -44,6 +44,8 @@ class WC_Gateway_CMO_Cart_Handler {
 		// $gateways = WC()->payment_gateways->get_available_payment_gateways();
             $settings = wc_gateway_cmo()->settings;
             $includes_path = wc_gateway_cmo()->includes_path;
+			
+			$express_checkout_img_url = apply_filters( 'woocommerce_paypal_express_checkout_button_img_url', sprintf( 'http://localhost:3000/woocmo-button.png', $settings->button_size ) );
 		?>
 		<div class="wcppec-checkout-buttons woo_pp_cart_buttons_div">
 			<br />

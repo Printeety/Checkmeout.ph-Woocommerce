@@ -1,6 +1,6 @@
 CheckMeOut Woo Ecommerce Plugin
 ------
- Woo Commerce plugin to allow payments using [CheckMeOut](http://vincit.github.io/objection.js/) - uses mysql as the default client/dialect
+ Woo Commerce plugin to allow payments using [CheckMeOut]
  
  
 Settings
@@ -18,8 +18,22 @@ Routes
  
 TODO
 ------
- * capture payment
- * return page implementation
- * ORDER ID creation : should be on woo? On the call that gets the URL from cmo
- * SHIPPING DATA : Sync to woo from return route callback ?
+ * capture payment from cmo callback and mark the order status to processing ( OrderIDWoo, Status )
+ * Security : create a whitelist(URL) for validation
+ * <strike>return page implementation </strike>
+ * <strike>ORDER ID creation : should be on woo? On the call that gets the URL from cmo</strike>
+ * SHIPPING DATA : shipping cost must be on the order that was created. viewable from details and success page
+ * Failed Payment implementation. Add a page to display a failed transcation
+ * Cancelled Payment implementation. Add a page to display a cancelled transcation
+ * Environment varible for the cmo url and other dev related settings
+ * Image for the cmo button must be on cmo / on woo assets
+ * cancel function from woo to cmo
+ * Settings page changes based on cmo's screens Jira Ticket CB-451 
+
+EPIC
+------
+ * COUPON implementation and discounts
+ * VERSIONING support
+ * Delivery update from CMO to change order status to complete
+
  

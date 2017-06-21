@@ -1,3 +1,21 @@
-
-œÇºÕ¨ G(šg«qãåº§ZŠ¢i­Ç©–è"Ú–Z0¥¬¦z{lºÈ§€(^rC:ëa¶Úşø§r+`ŠØnn*?¡¸ŞrØ¨;?ºÇ¬›+*•«-…ç^}«¥µÉbz{v&¥yËRzÛb0êeº§±ëmŠx,Â)emë½è§¶jÖ›jÇ®²)à¶–f­{²Ã‚…ç$™ê.µÉZ²ÂjË"‚yÔ¶Ø§‚Ì(ºW[zZuç_®‰­…çZµ¦Ú±ë¬Šx-…ç%jËf­{²Ã’zÛbÖœqë,yÖò¶°¢‡(šg«qç!yÉ&z‹­±ëmŠx,¢›b¢yš®G«Då/ğqªbÿ j×°k'& &¥•¶œ’êå¶‡(Öœ¶Ø^ÂŠ,z»Ş®· j·b
-ZÊg§¶Ïğ¢‡&¢·­º¹
+CheckMeOut Woo Ecommerce Plugin
+------
+ Woo Commerce plugin to allow payments using [CheckMeOut](http://vincit.github.io/objection.js/) - uses mysql as the default client/dialect
+ 
+ 
+ 
+Routes
+------
+ * `/wc-api/wc_gateway_cmo`  - Callback url to contact the woo server regarding payments
+ * `/?woo-cmo-return=true&order-id=[{order-id}]` - return URL to be passed to CMO. [ partially implemented - add the page ] 
+ * `/?woo-cmo-failed` -[ not yet implemented ]
+ * `/?woo-cmo-cancel` - [ not yet implemented ]
+ 
+ 
+TODO
+------
+ * capture payment
+ * return page implementation
+ * ORDER ID creation : should be on woo? On the call that gets the URL from cmo
+ * SHIPPING DATA : Sync to woo from return route callback ?
+ 

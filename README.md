@@ -3,6 +3,10 @@ CheckMeOut Woo Ecommerce Plugin
  Woo Commerce plugin to allow payments using [CheckMeOut](http://vincit.github.io/objection.js/) - uses mysql as the default client/dialect
  
  
+Settings
+------
+ * CMO plugin settings will be save in the database using the WC_Gateway_CMO_Checkmeout class ID assignment
+ * Settings would be loaded from the database using the class WC_Gateway_CMO_Settings and accessed by the woocommerce_checkmeout_settings option marker.
  
 Routes
 ------

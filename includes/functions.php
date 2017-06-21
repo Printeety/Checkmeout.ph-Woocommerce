@@ -2,9 +2,10 @@
 
 function woo_cmo_start_checkout() {
 	$checkout = wc_gateway_cmo()->checkout;
+	
 	try {
 		$result = $checkout->get_cmo_order_url();
-
+        
 		wp_redirect( $result->link );
 		exit;
 	} catch( Exception $e ) {

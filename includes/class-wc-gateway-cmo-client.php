@@ -26,18 +26,18 @@ class WC_Gateway_CMO_Client {
 			$details = $this->_get_details_from_cart();
 			$jwt = wc_gateway_cmo()->jwt->generateJWT();
 			
-//			var_dump($details['items']);exit;
 			$order = wc_create_order();
+			
 			foreach(  $details['items'] as $item ) {
 				$order->add_product( get_product( $item['item_id'] ), $item['quantity'] );
 			}
-			$order->set_status('pending');
+			
+			//$order->set_shipping_total('100');
 			$order->calculate_totals();
 			
 			$successUrl = $this->_get_return_url(array('order_id' => $order->id ));
 			
 			
-// TODO : use this for the cart function
 				$body = array(
 						"currency"					=> 'PHP', // TODO : should be from settings?
 						"shipping" => $details['shipping'],

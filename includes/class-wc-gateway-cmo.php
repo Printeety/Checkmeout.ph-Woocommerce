@@ -14,11 +14,5 @@ class WC_Gateway_CMO_Checkmeout extends WC_Gateway_CMO {
 		$handler->handle();
 		
 		//do_action( 'woocommerce_api_wc_gateway_cmo', wp_unslash( $_POST ) );
-		
-
-		// if ( $this->is_available() ) {
-		// 	$ipn_handler = new WC_Gateway_PPEC_IPN_Handler( $this );
-		// 	$ipn_handler->handle();
-		// }
 	}
 }
